@@ -1,0 +1,24 @@
+name: Multi-OS Build and Deploy
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build-and-deploy-macos:
+    runs-on: macos-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+      - name: Set up Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          flutter-version: "2.5.0" # Replace with your desired Flutter version
+      - name: Install dependencies
+        run: flutter pub get
+      - name: Build macOS app
+        run: flutter build macos
+      - name: Deploy to macOS
+        run: |
+          # Add your deployment commands for macOS here
